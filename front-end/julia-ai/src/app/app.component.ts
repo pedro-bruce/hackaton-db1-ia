@@ -115,7 +115,7 @@ export class AppComponent implements AfterViewChecked {
         .toPromise();
       this.messages.push({
         text:
-          aiResponse?.message ||
+          aiResponse?.mensagem ||
           'Desculpe, não consegui processar sua mensagem.',
         isUser: false,
         timestamp: new Date(),

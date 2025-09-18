@@ -77,11 +77,16 @@ src/
 
 ## 🔧 Configuração da API
 
-Para conectar com o back-end, atualize a URL da API no arquivo `ai-chat.service.ts`:
+O projeto está configurado para se conectar com o back-end na porta 5000. A configuração está nos arquivos de ambiente:
 
-```typescript
-private apiUrl = 'http://localhost:5000/api/chat'; // Sua URL da API
-```
+- **Desenvolvimento**: `src/environments/environment.ts`
+- **Produção**: `src/environments/environment.prod.ts`
+
+### Endpoint da API
+
+- **URL**: `http://localhost:5000/api/conversa`
+- **Método**: POST
+- **Resposta**: `{ "mensagem": "string" }`
 
 ## 🎨 Interface
 

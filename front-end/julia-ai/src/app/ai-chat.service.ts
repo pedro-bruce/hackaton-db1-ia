@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, delay } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 export interface ChatMessage {
   text: string;
@@ -10,16 +11,14 @@ export interface ChatMessage {
 }
 
 export interface AIResponse {
-  message: string;
-  shouldEscalate: boolean;
-  escalationReason?: string;
+  mensagem: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class AiChatService {
-  private apiUrl = 'http://localhost:5000/api/chat'; // Ajuste conforme sua API
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 
@@ -45,19 +44,12 @@ export class AiChatService {
       'Content-Type': 'application/json',
     });
 
-    // Por enquanto, retorna uma resposta simulada
-    // Em produção, descomente a linha abaixo e remova o return simulada
-    // return this.http.post<AIResponse>(this.apiUrl, payload, { headers });
-
-    return this.getSimulatedResponse(message, mood).pipe(
-      delay(1500), // Simula delay da API
+    // Chama a API real do back-end
+    return this.http.post<AIResponse>(this.apiUrl, payload, { headers }).pipe(
       catchError((error) => {
         console.error('Erro na comunicação com a API:', error);
-        return of({
-          message:
-            'Desculpe, ocorreu um erro ao processar sua mensagem. Tente novamente ou entre em contato com o RH.',
-          shouldEscalate: false,
-        });
+        // Em caso de erro, retorna resposta simulada como fallback
+        return this.getSimulatedResponse(message, mood);
       })
     );
   }
@@ -124,10 +116,8 @@ export class AiChatService {
     // Verifica termos críticos
     if (this.checkCriticalTerms(message)) {
       return of({
-        message:
+        mensagem:
           'Entendo que você está passando por um momento muito difícil. Recomendo fortemente que você converse com o RH ou gestão imediatamente. Eles estão preparados para te ajudar e oferecer o suporte necessário. Você pode entrar em contato através do canal oficial da empresa.',
-        shouldEscalate: true,
-        escalationReason: 'Termos críticos detectados',
       });
     }
 
@@ -137,8 +127,7 @@ export class AiChatService {
       responses[Math.floor(Math.random() * responses.length)];
 
     return of({
-      message: randomResponse,
-      shouldEscalate: false,
+      mensagem: randomResponse,
     });
   }
 
