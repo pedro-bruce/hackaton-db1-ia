@@ -109,12 +109,6 @@ export class AiChatService {
         'Sinto muito saber que você está triste. Estou aqui para te ouvir e ajudar. O que está te incomodando?',
       'muito-triste':
         'Vejo que você está passando por um momento difícil. Estou aqui para te apoiar. Quer conversar sobre o que está acontecendo?',
-      ansioso:
-        'Entendo que você está se sentindo ansioso. Vamos conversar sobre isso? Às vezes falar ajuda a aliviar a ansiedade.',
-      estressado:
-        'Parece que você está estressado. Estou aqui para te ajudar a encontrar formas de lidar com essa situação.',
-      preocupado:
-        'Vejo que você está preocupado. Quer compartilhar o que está te preocupando? Juntos podemos encontrar uma solução.',
     };
 
     return moodMessages[mood] || 'Olá! Sou a Julia, como posso te ajudar hoje?';
@@ -179,15 +173,7 @@ export class AiChatService {
     }
 
     // Respostas para humor negativo
-    if (
-      [
-        'triste',
-        'muito-triste',
-        'ansioso',
-        'estressado',
-        'preocupado',
-      ].includes(mood)
-    ) {
+    if (['triste', 'muito-triste'].includes(mood)) {
       if (
         lowerMessage.includes('trabalho') ||
         lowerMessage.includes('chefe') ||

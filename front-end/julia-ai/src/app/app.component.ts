@@ -51,9 +51,6 @@ export class AppComponent implements AfterViewChecked {
     { value: 'neutro', label: 'Neutro', emoji: '😐' },
     { value: 'triste', label: 'Triste', emoji: '😢' },
     { value: 'muito-triste', label: 'Muito Triste', emoji: '😭' },
-    { value: 'ansioso', label: 'Ansioso', emoji: '😰' },
-    { value: 'estressado', label: 'Estressado', emoji: '😤' },
-    { value: 'preocupado', label: 'Preocupado', emoji: '😟' },
   ];
 
   ngAfterViewChecked() {
