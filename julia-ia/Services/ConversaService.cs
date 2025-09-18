@@ -39,8 +39,6 @@ public class ConversaService : IConversaService
 
             var openAIRequest = new OpenAIRequest
             {
-                Model = "gpt-4o-mini",
-                MaxTokens = 1000,
                 Messages = new List<OpenAIMessage>
                 {
                     new OpenAIMessage

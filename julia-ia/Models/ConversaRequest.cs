@@ -15,8 +15,7 @@ public enum Humor
 public class ConversaRequest
 {
     [Required(ErrorMessage = "O humor é obrigatório")]
-    [JsonConverter(typeof(JsonStringEnumConverter))]
-    public Humor Humor { get; set; }
+    public string Humor { get; set; }
 
     [Required(ErrorMessage = "A mensagem é obrigatória")]
     [StringLength(1000, ErrorMessage = "A mensagem deve ter no máximo 1000 caracteres")]

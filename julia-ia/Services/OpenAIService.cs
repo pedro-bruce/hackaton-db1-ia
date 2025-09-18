@@ -30,7 +30,9 @@ public class OpenAIService : IOpenAIService
             });
 
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync("chat/completions", content);
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", "YOUR_API_KEY_HERE");
+            var response = await _httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
             if (!response.IsSuccessStatusCode)
             {

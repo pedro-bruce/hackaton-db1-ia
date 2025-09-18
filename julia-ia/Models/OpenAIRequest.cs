@@ -1,9 +1,13 @@
+using System.Text.Json.Serialization;
+
 namespace julia_ia.Models;
 
 public class OpenAIRequest
 {
-    public string Model { get; set; } = "gpt-4o-mini";
+    public string Model { get; set; } = "gpt-3.5-turbo";
     public List<OpenAIMessage> Messages { get; set; } = new();
+    
+    [JsonPropertyName("max_tokens")]
     public int MaxTokens { get; set; } = 1000;
     public double Temperature { get; set; } = 0.7;
 }
