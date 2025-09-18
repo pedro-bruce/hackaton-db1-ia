@@ -34,10 +34,8 @@ export class AiChatService {
     context?: any
   ): Observable<AIResponse> {
     const payload = {
-      message: message,
-      mood: mood,
-      context: context || {},
-      timestamp: new Date().toISOString(),
+      mensagem: message,
+      humor: mood,
     };
 
     const headers = new HttpHeaders({

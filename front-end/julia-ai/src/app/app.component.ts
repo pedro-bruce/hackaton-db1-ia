@@ -96,16 +96,6 @@ export class AppComponent implements AfterViewChecked {
       timestamp: new Date(),
     });
 
-    // Check for critical terms
-    if (this.aiChatService.checkCriticalTerms(userMessage)) {
-      this.messages.push({
-        text: 'Entendo que você está passando por um momento difícil. Recomendo fortemente que você converse com o RH ou gestão imediatamente. Eles estão preparados para te ajudar e oferecer o suporte necessário. Você pode entrar em contato através do canal oficial da empresa.',
-        isUser: false,
-        timestamp: new Date(),
-      });
-      return;
-    }
-
     // Get AI response
     this.isLoading = true;
 

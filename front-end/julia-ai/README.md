@@ -86,6 +86,7 @@ O projeto está configurado para se conectar com o back-end na porta 5000. A con
 
 - **URL**: `http://localhost:5000/api/conversa`
 - **Método**: POST
+- **Payload**: `{ "mensagem": "string", "humor": "string" }`
 - **Resposta**: `{ "mensagem": "string" }`
 
 ## 🎨 Interface
