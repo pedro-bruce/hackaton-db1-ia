@@ -1,5 +1,7 @@
 # Felicitômetro com IA
 
+## Todo o projeto foi feito com IA, desde a documentação, diagrama e código.
+
 ## 📌 Resumo do Projeto
 
 Hoje já existe dentro da empresa o **Felicitômetro**, onde colaboradores registram como estão se sentindo e se desejam conversar com gestão ou RH. Nossa proposta é expandir a ferramenta com uma nova opção: **"Conversar com a IA"** — um assistente virtual empático que complementa a triagem humana.
@@ -17,7 +19,7 @@ Criar um assistente virtual dentro do Felicitômetro que:
 
 ---
 
-## ⚙️ Implementação (visão geral)
+## ⚙️ Implementação
 
 O projeto será dividido nas seguintes responsabilidades:
 
@@ -41,9 +43,9 @@ O projeto será dividido nas seguintes responsabilidades:
 
 ---
 
-## 🚀 MVP (escopo mínimo viável)
+## 🚀 MVP
 
-Viável em curto tempo (estimativa rápida):
+Viável em curto tempo:
 
 * Front-end com botão e tela simples de chat.
 * API em .NET conectada à OpenAI (ou similar).
@@ -53,19 +55,19 @@ Viável em curto tempo (estimativa rápida):
 
 ---
 
-## Estrutura do repositório (sugerida)
+## Estrutura do repositório
 
 ```
 felicitometro-ia/
-├─ frontend/            # app React ou componente embutido
-├─ backend/             # API .NET (C#)
-├─ docs/                # arquitetura, riscos, decisões
-└─ README.md            # este arquivo
+├─ frontend/
+├─ backend/
+├─ docs/
+└─ README.md
 ```
 
 ---
 
-## Arquitetura (fluxo)
+## Arquitetura
 
 1. Usuário acessa Felicitômetro (front).
 2. Usuário seleciona humor (positivo, neutro, negativo, crítico).
