@@ -1,0 +1,100 @@
+<div class="felicitometro-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">😊</span>
+      <h1>Felicitômetro</h1>
+    </div>
+    <p class="subtitle">Como você está se sentindo hoje?</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Mood Selection (when not in chat) -->
+    <div *ngIf="!isInChat" class="mood-selection">
+      <h2>Selecione seu humor de hoje:</h2>
+      <div class="mood-options">
+        <button
+          *ngFor="let mood of moods"
+          class="mood-button"
+          [class.selected]="selectedMood === mood.value"
+          (click)="selectMood(mood.value)"
+          [attr.aria-label]="mood.label">
+          <span class="mood-emoji">{{ mood.emoji }}</span>
+          <span class="mood-label">{{ mood.label }}</span>
+        </button>
+</div>
+
+      <div *ngIf="selectedMood" class="action-buttons">
+        <button class="action-btn primary" (click)="startChat()">
+          <span class="btn-icon">💬</span>
+          Conversar com a Julia
+        </button>
+        <button class="action-btn secondary" (click)="talkToManager()">
+          <span class="btn-icon">👥</span>
+          Falar com Gestão/RH
+        </button>
+  </div>
+  </div>
+
+    <!-- Chat Interface -->
+    <div *ngIf="isInChat" class="chat-container">
+      <div class="chat-header">
+        <button class="back-btn" (click)="backToMoodSelection()">
+          <span>←</span>
+    </button>
+        <div class="chat-title">
+          <span class="ai-avatar">👩‍💼</span>
+          <span>Julia</span>
+        </div>
+  </div>
+
+      <div class="chat-messages" #chatMessages>
+        <div *ngFor="let message of messages"
+             class="message"
+             [class.user-message]="message.isUser"
+             [class.ai-message]="!message.isUser">
+          <div class="message-content">
+            <span *ngIf="!message.isUser" class="ai-avatar-small">👩‍💼</span>
+            <div class="message-text">{{ message.text }}</div>
+          </div>
+          <div class="message-time">{{ message.timestamp | date:'HH:mm' }}</div>
+  </div>
+
+        <div *ngIf="isLoading" class="message ai-message">
+          <div class="message-content">
+            <span class="ai-avatar-small">👩‍💼</span>
+            <div class="typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+  </div>
+
+      <div class="chat-input-container">
+        <div class="input-wrapper">
+          <input
+            type="text"
+            [(ngModel)]="currentMessage"
+            (keyup.enter)="sendMessage()"
+            placeholder="Digite sua mensagem..."
+            class="chat-input"
+            [disabled]="isLoading">
+          <button
+            class="send-btn"
+            (click)="sendMessage()"
+            [disabled]="!currentMessage.trim() || isLoading">
+            <span>➤</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>💡 Dica: A Julia está aqui para te ajudar e dar suporte. Em casos mais delicados, sempre recomendamos conversar com RH ou gestão.</p>
+  </footer>
+</div>
